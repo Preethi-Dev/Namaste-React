@@ -1,0 +1,19 @@
+{
+  "name": "episode02",
+  "version": "1.0.0",
+  "description": "Namaste React",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Preethi-Dev/Namaste-React.git"
+  },
+  "author": "Preethi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Preethi-Dev/Namaste-React/issues"
+  },
+  "homepage": "https://github.com/Preethi-Dev/Namaste-React#readme"
+}
