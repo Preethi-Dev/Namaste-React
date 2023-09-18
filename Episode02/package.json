@@ -2,7 +2,6 @@
   "name": "episode02",
   "version": "1.0.0",
   "description": "Namaste React",
-  "main": "main.js",
   "scripts": {
     "test": "jest"
   },
@@ -15,5 +14,13 @@
   "bugs": {
     "url": "https://github.com/Preethi-Dev/Namaste-React/issues"
   },
-  "homepage": "https://github.com/Preethi-Dev/Namaste-React#readme"
+  "homepage": "https://github.com/Preethi-Dev/Namaste-React#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }
