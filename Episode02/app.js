@@ -34,6 +34,14 @@ const parent = React.createElement("div", { id: "parent" }, [
   ]),
 ]);
 
+const JSXheading = (
+  <h1 id="heading" className="heading">
+    Heading01 by JSX
+  </h1>
+);
+
+console.log(JSXheading);
+
 console.log(parent); //React Element - It's an object
 
 //create a root inside React - create a root element on <div id="root"></div>
@@ -42,4 +50,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 // 1. Convert object to parent element
 // 2. Put it on DOM
 //it has a super power - it's just replace the content in root with passed react element
-root.render(parent);
+
+root.render(JSXheading);
