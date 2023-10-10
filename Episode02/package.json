@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Namaste React",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "npx parcel index.html",
     "build": "parcel build index.html",
     "test": "jest"
   },
