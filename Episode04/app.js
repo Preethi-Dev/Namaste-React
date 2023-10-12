@@ -1,6 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+/*
+ * Header
+ *   - Logo
+ *   - Nav Items
+ * Body
+ *   - Search
+ *   - RestrauntContainer
+ *   - RestrauntCard
+ * Footer
+ *   - Copyright
+ *   - Links
+ *   - Address
+ *   - Contact
+ */
+
 const App = () => {
   return (
     <div>
