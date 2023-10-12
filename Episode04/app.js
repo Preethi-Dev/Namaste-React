@@ -37,12 +37,12 @@ const Header = () => {
   );
 };
 
-const RestaurantCard = (resImg, resName, resRating) => {
+const RestaurantCard = (props) => {
   return (
     <div className="res-card">
-      <img width="100%" src={resImg} />
-      <h3 style={{ textTransform: "uppercase" }}>{resName}</h3>
-      <p>{resRating}</p>
+      <img width="100%" src={props.resImg} />
+      <h3 style={{ textTransform: "uppercase" }}>{props.resName}</h3>
+      <p>{props.resRating}</p>
     </div>
   );
 };
@@ -52,16 +52,16 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        {RestaurantCard(
-          "https://cdn-p300.americantowns.com/img/article/nj-indian-restaurants-1.jpg",
-          "Meghana foods",
-          "4.4 Ratings"
-        )}
-        {RestaurantCard(
-          "https://www.eatthis.com/wp-content/uploads/sites/4/2021/11/kfc-fried-chicken.jpg?quality=82&strip=1",
-          "KFC",
-          "4.8 Ratings"
-        )}
+        <RestaurantCard
+          resImg="https://cdn-p300.americantowns.com/img/article/nj-indian-restaurants-1.jpg"
+          resName="Meghana foods"
+          resRating="4.4 Ratings"
+        />
+        <RestaurantCard
+          resImg="https://www.eatthis.com/wp-content/uploads/sites/4/2021/11/kfc-fried-chicken.jpg?quality=82&strip=1"
+          resName="KFC"
+          resRating="4.9 Ratings"
+        />
       </div>
     </div>
   );
