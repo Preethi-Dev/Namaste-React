@@ -19,3 +19,15 @@
   list-style: none;
   font-size: 1.5rem;
 }
+
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.res-card {
+  width: 400px;
+  background-color: rgb(232, 232, 232);
+  padding: 0.75rem;
+}
