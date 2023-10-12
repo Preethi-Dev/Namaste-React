@@ -1,0 +1,21 @@
+.logo {
+  width: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.nav-items > ul {
+  display: flex;
+  gap: 1rem;
+  padding: 0 4rem 0 0;
+}
+
+.nav-items > ul > li {
+  list-style: none;
+  font-size: 1.5rem;
+}
