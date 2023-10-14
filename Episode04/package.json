@@ -19,7 +19,8 @@
   "homepage": "https://github.com/Preethi-Dev/Namaste-React#readme",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "parcel": "^2.10.0",

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { v4 as uuidv4 } from "uuid";
 
 /*
  * Header
@@ -977,7 +978,7 @@ const Body = () => {
       <div className="search">Search</div>
       <div className="res-container">
         {restraunts.map((restraunt) => (
-          <RestaurantCard key={restraunt.info.id} resData={restraunt} />
+          <RestaurantCard key={uuidv4()} resData={restraunt} />
         ))}
       </div>
     </div>
