@@ -9,6 +9,25 @@ const Body = () => {
 
   return (
     <div className="body">
+      <div className="search">
+        <input
+          type="text"
+          className="searchBox"
+          placeholder="search for restraunts"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              const searchedList = restraunts.filter((res) =>
+                res.info.name
+                  .toLowerCase()
+                  .includes(e.target.value.toLowerCase())
+              );
+              e.target.value = "";
+
+              setListOfRestraunts(searchedList);
+            }
+          }}
+        />
+      </div>
       <div className="filter">
         <button
           className="filter-btn"
