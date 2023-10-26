@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 import { v4 as uuidv4 } from "uuid";
 
 const Body = () => {
@@ -20,6 +21,10 @@ const Body = () => {
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (listOfRestraunts.length === 0) {
+    return <Shimmer />;
+  }
   return (
     <div className="body">
       {/* <div className="search">
