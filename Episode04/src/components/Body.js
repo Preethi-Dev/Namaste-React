@@ -1,22 +1,35 @@
-import { useState } from "react";
-import { restraunts } from "../utils/mockData";
+import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { v4 as uuidv4 } from "uuid";
 
 const Body = () => {
   //local state variable
-  let [listOfRestraunts, setListOfRestraunts] = useState(restraunts);
+  let [listOfRestraunts, setListOfRestraunts] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9744943&lng=80.2105601&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+
+    setListOfRestraunts(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
   return (
     <div className="body">
-      <div className="search">
+      {/* <div className="search">
         <input
           type="text"
           className="searchBox"
           placeholder="search for restraunts"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              const searchedList = restraunts.filter((res) =>
+              const searchedList = listOfRestraunts.filter((res) =>
                 res.info.name
                   .toLowerCase()
                   .includes(e.target.value.toLowerCase())
@@ -28,6 +41,7 @@ const Body = () => {
           }}
         />
       </div>
+        */}
       <div className="filter">
         <button
           className="filter-btn"
@@ -41,7 +55,7 @@ const Body = () => {
           Top Rated Restraunt
         </button>
       </div>
-      <div className="clear">
+      {/* <div className="clear">
         <button
           className="clear-btn"
           onClick={() => {
@@ -51,6 +65,7 @@ const Body = () => {
           clear
         </button>
       </div>
+        */}
       <div className="res-container">
         {listOfRestraunts.map((restraunt) => (
           <RestaurantCard key={uuidv4()} resData={restraunt} />
