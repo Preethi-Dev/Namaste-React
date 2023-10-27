@@ -55,3 +55,7 @@ input {
   margin: 0;
   padding: 0.5rem 1rem;
 }
+
+.filter {
+  display: flex;
+}

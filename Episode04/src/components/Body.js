@@ -5,7 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 const Body = () => {
   //local state variable
-  let [listOfRestraunts, setListOfRestraunts] = useState([]);
+  //whenever state variable updated, react trigger the reconciliation cycle (re-render the component)
+  const [listOfRestraunts, setListOfRestraunts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredRestraunts, setFilteredRestraunts] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -20,63 +23,68 @@ const Body = () => {
     setListOfRestraunts(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
+    setFilteredRestraunts(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+
+    console.log(json);
   };
 
   //conditional rendering
-  // if (listOfRestraunts.length === 0) {
-  //   return <Shimmer />;
-  // }
-
   return listOfRestraunts.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      {/* <div className="search">
-        <input
-          type="text"
-          className="searchBox"
-          placeholder="search for restraunts"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              const searchedList = listOfRestraunts.filter((res) =>
-                res.info.name
-                  .toLowerCase()
-                  .includes(e.target.value.toLowerCase())
-              );
-              e.target.value = "";
-
-              setListOfRestraunts(searchedList);
-            }
-          }}
-        />
-      </div>
-        */}
       <div className="filter">
+        <div className="search">
+          {/* bind the input value to search term */}
+          <input
+            type="text"
+            className="search-box"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              //filter the restraunt card and update the ui
+              //get the searchTerm
+              const filteredRestraunts = listOfRestraunts.filter((res) =>
+                res.info.name.toLowerCase().includes(searchTerm.toLowerCase())
+              );
+              setFilteredRestraunts(filteredRestraunts);
+              console.log(searchTerm);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
             let topRated = listOfRestraunts.filter(
               (res) => res.info.avgRating > 4
             );
-            setListOfRestraunts(topRated);
+            setFilteredRestraunts(topRated);
           }}
         >
           Top Rated Restraunt
         </button>
-      </div>
-      {/* <div className="clear">
+
         <button
-          className="clear-btn"
+          className="filter-btn"
           onClick={() => {
-            setListOfRestraunts(restraunts);
+            setFilteredRestraunts(listOfRestraunts);
           }}
         >
-          clear
+          Clear Filters
         </button>
       </div>
-        */}
+
       <div className="res-container">
-        {listOfRestraunts.map((restraunt) => (
+        {filteredRestraunts.map((restraunt) => (
           <RestaurantCard key={uuidv4()} resData={restraunt} />
         ))}
       </div>
