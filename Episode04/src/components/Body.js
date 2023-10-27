@@ -22,10 +22,14 @@ const Body = () => {
     );
   };
 
-  if (listOfRestraunts.length === 0) {
-    return <Shimmer />;
-  }
-  return (
+  //conditional rendering
+  // if (listOfRestraunts.length === 0) {
+  //   return <Shimmer />;
+  // }
+
+  return listOfRestraunts.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       {/* <div className="search">
         <input
