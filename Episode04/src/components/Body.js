@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //local state variable
@@ -84,9 +84,14 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {filteredRestraunts.map((restraunt) => (
-          <RestaurantCard key={uuidv4()} resData={restraunt} />
-        ))}
+        {filteredRestraunts.map((restraunt) => {
+          const resId = restraunt.info.id;
+          return (
+            <Link to={"/restaurants/" + resId} key={resId}>
+              <RestaurantCard resData={restraunt} />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
