@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestrauntList from "../utils/useRestrauntList";
 
 const Body = () => {
   //local state variable
@@ -10,26 +12,10 @@ const Body = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredRestraunts, setFilteredRestraunts] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useRestrauntList(setListOfRestraunts, setFilteredRestraunts);
 
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9744943&lng=80.2105601&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-
-    setListOfRestraunts(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-
-    setFilteredRestraunts(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-
-    console.log(json);
-  };
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus) return <h1>You are offline</h1>;
 
   //conditional rendering
   return listOfRestraunts.length === 0 ? (
