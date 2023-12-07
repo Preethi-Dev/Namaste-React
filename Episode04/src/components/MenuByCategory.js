@@ -12,13 +12,13 @@ const MenuByCategory = (props) => {
     veg ? setVegOrNonVeg(vegItemCards) : setVegOrNonVeg(itemCards);
   }, []);
   return (
-    <div className="menu">
-      <div className="menu__header">
-        <h3 className="menu__title">
+    <div className="flex flex-col mt-4">
+      <div className="flex justify-between">
+        <h3 className="font-semibold text-xl">
           {title} ({vegOrNonVeg.length})
         </h3>
         <h3
-          className="menu__reveal"
+          className="menu__reveal cursor-pointer"
           onClick={(e) => {
             e.target.innerText === "+"
               ? (e.target.innerText = "-")
@@ -33,7 +33,7 @@ const MenuByCategory = (props) => {
         </h3>
       </div>
       <div className={`menu__body ${index === 0 ? "" : "hidden"}`}>
-        <ul>
+        <ul className="py-4">
           {vegOrNonVeg.map((itemCard) => {
             const { name, price } = itemCard.card.info;
             return (

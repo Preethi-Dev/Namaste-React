@@ -41,12 +41,18 @@ const RestaurantMenu = () => {
   // });
 
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <p>{cuisines.join(", ")}</p>
-      <p>{areaName}</p>
-      <p className="ratings">{totalRatingsString}</p>
-      <h2>Menu</h2>
+    <div className="m-5 p-4">
+      <div className="flex justify-between">
+        <div className="text-gray-400 text-sm">
+          <h1 className="text-xl text-gray-900 font-semibold">{name}</h1>
+          <p>{cuisines.join(", ")}</p>
+          <p>{areaName}</p>
+        </div>
+        <p className="bg-green-200 p-4 rounded-md self-start font-semibold text-green-900">
+          {totalRatingsString}
+        </p>
+      </div>
+      <h2 className="font-bold text-2xl mt-12 mb-6">Menu</h2>
       <input
         type="checkbox"
         id="veg-only"
@@ -54,7 +60,9 @@ const RestaurantMenu = () => {
           setVegStatus(e.target.checked);
         }}
       />
-      <label htmlFor="veg-only">Veg Only</label>
+      <label htmlFor="veg-only" className="font-semibold ml-2">
+        Veg Only
+      </label>
 
       {itemsByCategory.map((item, index) => (
         <MenuByCategory

@@ -22,18 +22,19 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex m-5 p-4 gap-3">
+        <div className="flex gap-2">
           {/* bind the input value to search term */}
           <input
             type="text"
-            className="search-box"
+            className="border-b-2 border-gray"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
           />
           <button
+            className="bg-pink-100 px-4 py-2 rounded-md"
             onClick={() => {
               //filter the restraunt card and update the ui
               //get the searchTerm
@@ -48,7 +49,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="bg-gray-200 px-4 py-2 ml-auto rounded-md"
           onClick={() => {
             let topRated = listOfRestraunts.filter(
               (res) => res.info.avgRating > 4
@@ -60,7 +61,7 @@ const Body = () => {
         </button>
 
         <button
-          className="filter-btn"
+          className="bg-gray-200 px-4 py-2 rounded-md"
           onClick={() => {
             setFilteredRestraunts(listOfRestraunts);
           }}
@@ -69,11 +70,15 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap items-stretch gap-4 justify-center">
         {filteredRestraunts.map((restraunt) => {
           const resId = restraunt.info.id;
           return (
-            <Link to={"/restaurants/" + resId} key={resId}>
+            <Link
+              className="bg-gray-100 rounded-md hover:bg-gray-200"
+              to={"/restaurants/" + resId}
+              key={resId}
+            >
               <RestaurantCard resData={restraunt} />
             </Link>
           );

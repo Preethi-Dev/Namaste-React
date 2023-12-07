@@ -6,12 +6,12 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   let [log, setLog] = useState("Login");
   return (
-    <div className="header">
-      <div className="logo-container">
+    <div className="flex justify-between items-center m-5 p-4 bg-pink-100 shadow-sm">
+      <div className="w-52">
         <img className="logo" src={LOGO_LINK} />
       </div>
       <div className="nav-items">
-        <ul>
+        <ul className="flex gap-4">
           <li>Online Status: {useOnlineStatus() ? "🟢" : "🔴"}</li>
           <li>
             <Link to="/">Home</Link>
