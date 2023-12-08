@@ -18,4 +18,19 @@ const RestaurantCard = (props) => {
   );
 };
 
+export const withRestaurantCardOffer = (RestaurantCard) => {
+  return (props) => {
+    const { resData } = props;
+    const offers = resData.info.aggregatedDiscountInfoV3?.header;
+    return (
+      <div>
+        <label className="absolute m-2 p-2 text-yellow-700 font-semibold bg-yellow-200 rounded-md">
+          {offers}
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestaurantCard;

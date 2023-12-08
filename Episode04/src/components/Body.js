@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withRestaurantCardOffer } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -12,8 +12,10 @@ const Body = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredRestraunts, setFilteredRestraunts] = useState([]);
 
-  useRestrauntList(setListOfRestraunts, setFilteredRestraunts);
+  const RestaurantCardOffer = withRestaurantCardOffer(RestaurantCard);
 
+  useRestrauntList(setListOfRestraunts, setFilteredRestraunts);
+  console.log(listOfRestraunts);
   const onlineStatus = useOnlineStatus();
   if (!onlineStatus) return <h1>You are offline</h1>;
 
@@ -79,7 +81,11 @@ const Body = () => {
               to={"/restaurants/" + resId}
               key={resId}
             >
-              <RestaurantCard resData={restraunt} />
+              {restraunt.info.aggregatedDiscountInfoV3?.header ? (
+                <RestaurantCardOffer resData={restraunt} />
+              ) : (
+                <RestaurantCard resData={restraunt} />
+              )}
             </Link>
           );
         })}
