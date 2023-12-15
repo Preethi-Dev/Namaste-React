@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RestaurantCard, { withRestaurantCardOffer } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useRestrauntList from "../utils/useRestrauntList";
+import UserContext from "../utils/userContext";
 
 const Body = () => {
   //local state variable
@@ -11,11 +12,11 @@ const Body = () => {
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredRestraunts, setFilteredRestraunts] = useState([]);
-
   const RestaurantCardOffer = withRestaurantCardOffer(RestaurantCard);
 
+  const { setUserName } = useContext(UserContext);
+
   useRestrauntList(setListOfRestraunts, setFilteredRestraunts);
-  console.log(listOfRestraunts);
   const onlineStatus = useOnlineStatus();
   if (!onlineStatus) return <h1>You are offline</h1>;
 
@@ -70,6 +71,13 @@ const Body = () => {
         >
           Clear Filters
         </button>
+        <input
+          type="text"
+          className="border-b-2 border-gray"
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+        />
       </div>
 
       <div className="flex flex-wrap items-stretch gap-4 justify-center">
