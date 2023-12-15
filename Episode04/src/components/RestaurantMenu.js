@@ -8,6 +8,7 @@ import useRestrauntMenu from "../utils/useRestrauntMenu";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const [vegStatus, setVegStatus] = useState(false);
+  const [showIndex, setShowIndex] = useState(0);
 
   const resInfo = useRestrauntMenu(resId);
 
@@ -16,29 +17,15 @@ const RestaurantMenu = () => {
   const { name, totalRatingsString, cuisines, areaName } =
     resInfo?.cards[0]?.card?.card?.info;
 
-  const { itemCards } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-
   const { cards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
 
-  //find length of the VEG items according to category
-  const findLength = (itemCards) => {
-    const veg = itemCards.filter((item) => item?.card?.info?.isVeg);
-    return veg.length;
-  };
+  const itemsByCategory = cards.filter(
+    (card) =>
+      card?.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
-  const itemsByCategory = cards.filter((card) => card?.card?.card?.itemCards);
   console.log(itemsByCategory);
-  // cards.map((card) => {
-  //   if (card?.card?.card?.itemCards) {
-  //     if (findLength(card?.card?.card?.itemCards) !== 0)
-  //       console.log(
-  //         `${card?.card?.card?.title} (${findLength(
-  //           card?.card?.card?.itemCards
-  //         )})`
-  //       );
-  //   }
-  // });
 
   return (
     <div className="m-5 p-4">
@@ -68,8 +55,11 @@ const RestaurantMenu = () => {
         <MenuByCategory
           key={uuidv4()}
           category={item}
-          index={index}
           veg={vegStatus}
+          showItems={index === showIndex && true}
+          setShowIndex={() =>
+            index === showIndex ? setShowIndex(null) : setShowIndex(index)
+          }
         />
       ))}
     </div>
