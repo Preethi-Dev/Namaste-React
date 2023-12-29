@@ -1,9 +1,9 @@
+import Counter from "../features/counter/Counter";
+
 const Body = () => {
   return (
     <div>
-      <h1 className="text-4xl font-bold capitalize text-center">
-        Welcome to redux store
-      </h1>
+      <Counter />
     </div>
   );
 };
