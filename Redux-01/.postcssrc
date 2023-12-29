@@ -1,0 +1,5 @@
+{
+  "plugins": {
+    "tailwindcss": {} //we tell .postcssrc -> that we are using tailwind over here
+  }
+}
